@@ -12,27 +12,34 @@
 // REVISION HISTORY
 //
 // DATE           AUTHOR           VERSION     REASONS
-// -------------------------------------------------------------------
+// -------------------------------------------------------------------------------------
 // 2016-07-05     Anh Khoi Do      1.0         Creation of the file.
 //
+// 2016-07-06     Anh Khoi Do      2.0         Addition of a defined constant, an if
+//                                             statement that checks if the text file has
+//                                             10 lines and a member function of type void
+//                                             named shrinkTextFile(n).
 
 #include <iostream>
 #include <fstream>
 #include "Score.h"
 
+#define RESIZEDARRAY 5
 
 int getNumberOfLines();
 int getHighScore();
 void selectionSort(int arr[], int size);
-
 void quick(int arr[], int left, int right);
-
+void shrinkTextFile(int s);
 
 //
 // The main function.
 //
 int main()
 {
+
+	int currentNumberOfLines = getNumberOfLines();
+	if (currentNumberOfLines == 10) shrinkTextFile(currentNumberOfLines);
 
 	//
 	// Declaratioin of two instance variables.
@@ -195,4 +202,47 @@ void quick(int arr[], int left, int right)
 		if (left < j) quick(arr, left, j);
 								
 		if (i < right) quick(arr, i, right);
+}
+
+
+//
+// This member function shrinks the text file to 5 inputted 
+// numbers in case the text file named highScore.txt reaches
+// 10 lines. The first five elements in the new version of
+// highScore.txt will be the highest inputted number of all time
+// and the four numbers that precedes it. This member functions
+// prevents highScore.txt from becoming bloated and, finally,
+// keeps its size under 50 bytes.
+//
+void shrinkTextFile(int s)
+{
+	std::ifstream inTmpArray;
+	std::ofstream osOutputArray;
+	
+	int tmpArray[s];
+	inTmpArray.open("highScore.txt");
+	
+	if (inTmpArray.is_open())
+	{
+		int i = 0;
+		
+		do
+		{
+			inTmpArray >> tmpArray[i];
+			i++;
+		} while (i < s && !inTmpArray.eof());
+		
+	} else std::cout << "Error while opening or finding file highScore.txt in program\'s main directory." << std::endl;
+	
+	inTmpArray.close();
+	
+	quick(tmpArray, 0, s - 1);
+	
+	osOutputArray.open("highScore.txt");
+	
+	if (osOutputArray.is_open())
+	{
+		for (int j = 1; j <= RESIZEDARRAY; j++) osOutputArray << tmpArray[s - j] << std::endl;
+	} else std::cout << "Error while opening or finding file highScore.txt in program\'s main directory." << std::endl;
+	osOutputArray.close();
 }
