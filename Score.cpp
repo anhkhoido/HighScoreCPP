@@ -9,10 +9,10 @@
 //
 // REVISION HISTORY
 //
-// DATE           Author             REASON(S)
+// DATE           Author           VERSION     REASON(S)
 // ----------------------------------------------------------
-// 2016-07-04     Anh Khoi Do        Creation of the file.
-//===========================================================
+// 2016-07-04     Anh Khoi Do      1.0         Creation of the file.
+//=================================================================================
 
 #include "Score.h"
 
