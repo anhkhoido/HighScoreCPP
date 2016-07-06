@@ -9,11 +9,11 @@
 //
 // REVISION HISTORY
 //
-// DATE          AUTHOR             REASONS
+// DATE          AUTHOR            VERSION       REASONS
 // ------------------------------------------------------------
-// 2016-07-04    Anh Khoi Do        Creation of the file.
+// 2016-07-04    Anh Khoi Do       1.0           Creation of the file.
 //
-//=============================================================
+//=========================================================================
 
 #include <iostream>
 #include <string>
