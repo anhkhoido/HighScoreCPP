@@ -62,3 +62,9 @@ std::ostream& Score::read(std::ostream& os) const
 
 	return os;
 }
+
+std::ostream& operator<<(std::ostream& os, const Score& src) {
+	src.read(os);
+
+	return os;
+}
